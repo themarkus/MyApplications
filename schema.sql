@@ -1,0 +1,17 @@
+
+CREATE TABLE BOOKMARKS (
+  ID INTEGER NOT NULL GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1),
+  
+  NAME VARCHAR(64) NOT NULL, 
+  LINK VARCHAR(1024) NOT NULL,
+
+  UNIQUE ("NAME"),
+  PRIMARY KEY (ID)
+);
+
+INSERT INTO BOOKMARKS (NAME, LINK) VALUES ('google', 'https://google.com');
+INSERT INTO BOOKMARKS (NAME, LINK) VALUES ('acc', 'http://austincc.edu');
+INSERT INTO BOOKMARKS (NAME, LINK) VALUES ('github', 'https://github.com');
+
+
+select * from bookmarks;
