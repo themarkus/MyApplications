@@ -10,9 +10,7 @@
             <input type="text" name="name" placeholder="Site name" /><br />
             <input type="test" name="link" placeholder="URL" /> <br />
             
-            <input type="submit" value="Save" />
-            
-        </form>
-        
+            <input type="submit" value="Save" />    
+        </form>    
     </body>
 </html>

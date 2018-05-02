@@ -18,6 +18,4 @@ public class HomeServlet extends HttpServlet {
         req.setAttribute("bookmarks", findManager().allBookmarks());
         req.getRequestDispatcher("/WEB-INF/home.jsp").forward(req, resp);
     }
-
-
 }
