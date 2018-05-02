@@ -2,6 +2,7 @@ package edu.austincc.bookmarks;
 
 import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;
+import javax.annotation.sql.DataSourceDefinitions;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -14,8 +15,10 @@ import javax.sql.DataSource;
         databaseName = "bookmarks",
         user = "app",
         password = "app")
+
 @WebListener
 public class SetupListener implements ServletContextListener {
+
     @Resource(lookup = "java:app/jdbc/db")
     DataSource dataSource;
 

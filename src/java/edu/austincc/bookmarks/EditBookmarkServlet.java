@@ -1,8 +1,5 @@
 package edu.austincc.bookmarks;
 
-
-import edu.austincc.bookmarks.Bookmark;
-import edu.austincc.bookmarks.BookmarkManager;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +9,15 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/edit")
 public class EditBookmarkServlet extends HttpServlet {
-
+    private BookmarkManager bookmarkManager() {
+        return (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
+    }
+    
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
 
-        BookmarkManager manager = (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
-
-        Bookmark bookmark = (Bookmark) manager.bookmarkById(id);
-
+        Bookmark bookmark = (Bookmark) bookmarkManager().bookmarkById(id);
         if (bookmark == null) {
             resp.sendError(404);
         } else {
@@ -32,17 +29,16 @@ public class EditBookmarkServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));
-        BookmarkManager manager = (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
 
-        Bookmark bookmark = (Bookmark) manager.bookmarkById(id);
+        Bookmark bookmark = bookmarkManager().bookmarkById(id);
         if (bookmark == null) {
             resp.sendError(404);
         } else {
             bookmark.setName(req.getParameter("name"));
             bookmark.setLink(req.getParameter("link"));
 
-            manager.updateBookmark(bookmark);
-       
+            bookmarkManager().updateBookmark(bookmark);
+
             resp.sendRedirect("/bookmarks/");
         }
     }

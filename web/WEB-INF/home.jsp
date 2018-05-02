@@ -17,7 +17,7 @@
                         <c:out value="${bookmark.name}" />
                     </a>                  
                     [<fmt:formatDate pattern="EEE, d MMM yyyy HH:mm" value="${bookmark.createdAt}"/>]
-
+                      
                     <form action="/bookmarks/edit" method="GET">
                         <input type="hidden" name="id" value="${bookmark.id}" />
                         <input type="submit" value="edit"/>

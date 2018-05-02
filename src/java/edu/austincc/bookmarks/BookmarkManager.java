@@ -4,12 +4,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.sql.DataSource;
 
 public class BookmarkManager extends DBManager {
@@ -23,8 +19,7 @@ public class BookmarkManager extends DBManager {
     private Bookmark bookmarkFromDB(ResultSet resultSet) throws SQLException {
 //        SimpleDateFormat format = new SimpleDateFormat("EEE, MMM d, ''yy");
 //        Timestamp timestamp = resultSet.getTimestamp("created_at");
-//        String formattedTimestamp = format.format(timestamp);
-//        
+//        String formattedTimestamp = format.format(timestamp);   
 //        System.out.println("-- " + formattedTimestamp); 
 
         return new Bookmark(
@@ -125,6 +120,7 @@ public class BookmarkManager extends DBManager {
             statement.setInt(1, id);
 
             boolean ok = statement.execute();
+            //return this to the caller
             System.out.println("DELETE OK? " + ok);
 
         } catch (SQLException ex) {
@@ -142,12 +138,14 @@ public class BookmarkManager extends DBManager {
 
         try {
             connection = dataSource.getConnection();
+            // we should rename "created_at" to "last_modified"
             statement = connection.prepareStatement("update bookmarks set name=?, link=?, created_at = current_timestamp where id=?");
             statement.setString(1, bookmark.getName());
             statement.setString(2, bookmark.getLink());
             statement.setInt(3, bookmark.getId());
-            
+
             boolean ok = statement.execute();
+            // return this to the caller
             System.out.println("UPDATE OK? " + ok);
 
         } catch (SQLException ex) {

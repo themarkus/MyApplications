@@ -17,15 +17,14 @@ public class NewLinkServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        BookmarkManager manager = (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
+
         String name = req.getParameter("name");
         String link = req.getParameter("link");
-        
+
         Bookmark bookmark = new Bookmark(name, link);
-        
-        BookmarkManager manager = (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
-              
         manager.addBookmark(bookmark);
-        
+
         resp.sendRedirect("/bookmarks");
     }
 }
