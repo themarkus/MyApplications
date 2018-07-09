@@ -1,4 +1,4 @@
-package edu.austincc.bookmarks;
+package behnke.mark.StudyApplication;
 
 import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;

@@ -1,4 +1,4 @@
-package edu.austincc.bookmarks;
+package behnke.mark.StudyApplication;
 
 import java.sql.Connection;
 import java.sql.ResultSet;

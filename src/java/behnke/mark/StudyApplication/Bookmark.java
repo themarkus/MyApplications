@@ -1,4 +1,4 @@
-package edu.austincc.bookmarks;
+package behnke.mark.StudyApplication;
 
 import java.util.Date;
 
