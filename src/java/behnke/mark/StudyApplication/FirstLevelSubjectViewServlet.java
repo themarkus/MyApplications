@@ -7,11 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("")
-public class FirstLevelSubjectsViewServlet extends HttpServlet {
+@WebServlet("/FirstLevelSubject/View")
+public class FirstLevelSubjectViewServlet extends HttpServlet {
 
-    private BookmarkManager findManager() {
-        return (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
+    private FirstLevelSubjectManager findManager() {
+        return (FirstLevelSubjectManager) getServletContext().getAttribute("firstLevelSubjectManager");
     }
     
     private void setFlash(HttpServletRequest req) {
@@ -26,8 +26,8 @@ public class FirstLevelSubjectsViewServlet extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         setFlash(req);
 
-        req.setAttribute("bookmarks", findManager().allBookmarks());
-        req.getRequestDispatcher("/WEB-INF/home.jsp").forward(req, resp);
+        req.setAttribute("firstLevelSubjects", findManager().allFirstLevelSubjects());
+        req.getRequestDispatcher("/WEB-INF/FirstLevelSubjectView.jsp").forward(req, resp);
     }
 
 }

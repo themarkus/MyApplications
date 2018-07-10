@@ -33,7 +33,7 @@
                         [<fmt:formatDate pattern="EEE, d MMM yyyy HH:mm" value="${bookmark.createdAt}"/>]
 
 
-                        <form action="/bookmarks/edit" method="GET">
+                        <form action="/StudyApplication/edit" method="GET">
                             <input type="hidden" name="id" 
                                    value="<c:out value='${bookmark.id}' />" />
                             <input type="submit" 
@@ -41,7 +41,7 @@
                                    value="edit"/>
                         </form>
 
-                        <form action="/bookmarks/delete" method="POST">
+                        <form action="/StudyApplication/delete" method="POST">
                             <input type="hidden" name="id" 
                                    value="<c:out value='${bookmark.id}' />" />
                             <input type="submit" 
@@ -53,7 +53,8 @@
                 </c:forEach>
             </ul>
 
-            <a class="btn btn-primary" href="/bookmarks/new">Add a new Link</a>
+            <a class="btn btn-primary" href="/StudyApplication/new">Add a new Link</a>
+            <a class="btn btn-primary" href="/StudyApplication/FirstLevelSubject/View">View First Level Subjects</a>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

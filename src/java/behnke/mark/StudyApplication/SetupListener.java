@@ -2,7 +2,6 @@ package behnke.mark.StudyApplication;
 
 import javax.annotation.Resource;
 import javax.annotation.sql.DataSourceDefinition;
-import javax.annotation.sql.DataSourceDefinitions;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
@@ -12,7 +11,7 @@ import javax.sql.DataSource;
         name = "java:app/jdbc/db",
         className = "org.apache.derby.jdbc.ClientDataSource",
         url = "jdbc:derby://localhost:1527/",
-        databaseName = "bookmarks",
+        databaseName = "StudyDB",
         user = "app",
         password = "app")
 
@@ -24,14 +23,18 @@ public class SetupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        System.out.println("+++++ STARTING BOOKMARKS");
-        BookmarkManager manager = new BookmarkManager(dataSource);
-        sce.getServletContext().setAttribute("bookmarkManager", manager);
+        System.out.println("+++++ STARTING First Level Subjects");
+        FirstLevelSubjectManager manager = new FirstLevelSubjectManager(dataSource);
+        sce.getServletContext().setAttribute("firstLevelSubjectManager", manager);
+        
+        System.out.println("+++++ STARTING Bookmarks");
+        BookmarkManager bmmanager = new BookmarkManager(dataSource);
+        sce.getServletContext().setAttribute("bookmarkManager", bmmanager);
     }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        System.out.println("----- STOPPING BOOKMARKS");
+        System.out.println("----- STOPPING First Level Subjects");
 
     }
 }

@@ -7,17 +7,17 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/delete")
-public class FirstLevelSubjectsDeleteServlet extends HttpServlet {
-    private BookmarkManager bookmarkManager() {
-        return (BookmarkManager) getServletContext().getAttribute("bookmarkManager");
+@WebServlet("/FirstLevelSubject/Delete")
+public class FirstLevelSubjectDeleteServlet extends HttpServlet {
+    private FirstLevelSubjectManager firstLevelSubjectManager() {
+        return (FirstLevelSubjectManager) getServletContext().getAttribute("firstLevelSubjectManager");
     }
     
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));      
-        bookmarkManager().deleteById(id);
-        resp.sendRedirect("/bookmarks/");
+        firstLevelSubjectManager().deleteById(id);
+        resp.sendRedirect("/StudyApplication/FirstLevelSubject/View");
     }
 
 

@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Edit Bookmark</title>
+        <title>Edit First Level Subject</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
@@ -13,16 +13,16 @@
     <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
     <body>
         <div class="container">
-            <form action="/bookmarks/edit" method="POST">  
+            <form action="/StudyApplication/FirstLevelSubject/Edit" method="POST">  
                 <input type="hidden" name="id" 
-                       value="<c:out value='${bookmark.id}'/>" />
+                       value="<c:out value='${firstLevelSubject.id}'/>" />
 
                 <div class="form-row">
                     <div class="col-md-4 mb-3"> 
                         <label>Name</label>
                         <input type="text" name="name" 
                                class="form-control <c:if test='${!empty errors.name}'>is-invalid</c:if>" 
-                               value="<c:out value='${param.name == null ? bookmark.name : param.name}'/>"/>
+                               value="<c:out value='${param.name == null ? firstLevelSubject.name : param.name}'/>"/>
                         <div class="invalid-feedback">
                             <c:out value="${errors.name}" />
                         </div>
@@ -34,7 +34,7 @@
                         <label>Link</label>
                         <input type="text" name="link" 
                                class="form-control <c:out value='${empty errors.link ? "":"is-invalid"}'/>"
-                               value="<c:out value='${param.link == null ? bookmark.link : param.link}'/>"/>
+                               value="<c:out value='${param.link == null ? firstLevelSubject.link : param.link}'/>"/>
                         <div class="invalid-feedback">
                             <c:out value="${errors.link}" />
                         </div>

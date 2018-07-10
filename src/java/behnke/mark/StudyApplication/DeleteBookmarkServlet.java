@@ -17,7 +17,7 @@ public class DeleteBookmarkServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         int id = Integer.parseInt(req.getParameter("id"));      
         bookmarkManager().deleteById(id);
-        resp.sendRedirect("/bookmarks/");
+        resp.sendRedirect("/StudyApplication/");
     }
 
 

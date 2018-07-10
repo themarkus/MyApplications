@@ -13,8 +13,7 @@
     <body>
         <div class="containter">
             <div class="jumbotron">
-                <h1 class="display-4">Bookmarks</h1>
-                <p class="lead">The bookmarks demo</p>
+                <h1 class="display-4">First Level Subjects</h1>
             </div>
 
             <c:if test="${not empty flash}">
@@ -24,26 +23,26 @@
             </c:if>
             
             <ul class="list-group">
-                <c:forEach items="${bookmarks}" var="bookmark">
+                <c:forEach items="${firstLevelSubjects}" var="firstLevelSubject">
                     <li class="list-group-item mb-2">
 
-                        <a href="<c:out value='${bookmark.link}' />">
-                            <c:out value="${bookmark.name}" />
+                        <a href="<c:out value='${firstLevelSubject.link}' />">
+                            <c:out value="${firstLevelSubject.name}" />
                         </a>                  
-                        [<fmt:formatDate pattern="EEE, d MMM yyyy HH:mm" value="${bookmark.createdAt}"/>]
+                        [<fmt:formatDate pattern="EEE, d MMM yyyy HH:mm" value="${firstLevelSubject.createdAt}"/>]
 
 
-                        <form action="/bookmarks/edit" method="GET">
+                        <form action="/StudyApplication/FirstLevelSubject/Edit" method="GET">
                             <input type="hidden" name="id" 
-                                   value="<c:out value='${bookmark.id}' />" />
+                                   value="<c:out value='${firstLevelSubject.id}' />" />
                             <input type="submit" 
                                    class="btn btn-primary"
                                    value="edit"/>
                         </form>
 
-                        <form action="/bookmarks/delete" method="POST">
+                        <form action="/StudyApplication/FirstLevelSubject/Delete" method="POST">
                             <input type="hidden" name="id" 
-                                   value="<c:out value='${bookmark.id}' />" />
+                                   value="<c:out value='${firstLevelSubject.id}' />" />
                             <input type="submit" 
                                    class="btn btn-danger"
                                    value="delete"/>
@@ -53,7 +52,7 @@
                 </c:forEach>
             </ul>
 
-            <a class="btn btn-primary" href="/bookmarks/new">Add a new Link</a>
+            <a class="btn btn-primary" href="/StudyApplication/FirstLevelSubject/Create">Add a new First Level Subject</a>
         </div>
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>

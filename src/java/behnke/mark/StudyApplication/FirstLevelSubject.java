@@ -2,21 +2,21 @@ package behnke.mark.StudyApplication;
 
 import java.util.Date;
 
-public class FirstLevelSubjects {
+public class FirstLevelSubject {
 
     private int id;
     private String name;
     private String link;
     private Date createdAt;
 
-    public FirstLevelSubjects(String name, String link) {
+    public FirstLevelSubject(String name, String link) {
         this.id = -1;
         this.name = name;
         this.link = link;
         this.createdAt = null;
     }
 
-    public FirstLevelSubjects(int id, String name, String link, Date date) {
+    public FirstLevelSubject(int id, String name, String link, Date date) {
         this.id = id;
         this.name = name;
         this.link = link;

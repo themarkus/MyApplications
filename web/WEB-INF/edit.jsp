@@ -13,7 +13,7 @@
     <!-- https://getbootstrap.com/docs/4.0/components/forms/ -->
     <body>
         <div class="container">
-            <form action="/bookmarks/edit" method="POST">  
+            <form action="/StudyApplication/edit" method="POST">  
                 <input type="hidden" name="id" 
                        value="<c:out value='${bookmark.id}'/>" />
 

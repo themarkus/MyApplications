@@ -25,6 +25,6 @@ public class NewLinkServlet extends HttpServlet {
         Bookmark bookmark = new Bookmark(name, link);
         manager.addBookmark(bookmark);
 
-        resp.sendRedirect("/bookmarks");
+        resp.sendRedirect("/StudyApplication");
     }
 }

@@ -8,29 +8,29 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.sql.DataSource;
 
-public class FirstLevelSubjectsManager extends DBManager {
+public class FirstLevelSubjectManager extends DBManager {
 
     private final DataSource dataSource;
 
-    public FirstLevelSubjectsManager(DataSource dataSource) {
+    public FirstLevelSubjectManager(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    private Bookmark bookmarkFromDB(ResultSet resultSet) throws SQLException {
+    private FirstLevelSubject firstLevelSubjectFromDB(ResultSet resultSet) throws SQLException {
 //        SimpleDateFormat format = new SimpleDateFormat("EEE, MMM d, ''yy");
 //        Timestamp timestamp = resultSet.getTimestamp("created_at");
 //        String formattedTimestamp = format.format(timestamp);   
 //        System.out.println("-- " + formattedTimestamp); 
 
-        return new Bookmark(
+        return new FirstLevelSubject(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getString("link"),
                 resultSet.getTimestamp("created_at"));
     }
 
-    public Bookmark bookmarkById(int id) {
-        Bookmark bookmark = null;
+    public FirstLevelSubject firstLevelSubjectById(int id) {
+        FirstLevelSubject firstLevelSubject = null;
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -38,12 +38,12 @@ public class FirstLevelSubjectsManager extends DBManager {
 
         try {
             connection = dataSource.getConnection();
-            statement = connection.prepareStatement("SELECT * FROM bookmarks where id=?");
+            statement = connection.prepareStatement("SELECT * FROM firstLevelSubjects where id=?");
             statement.setInt(1, id);
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                bookmark = bookmarkFromDB(resultSet);
+                firstLevelSubject = firstLevelSubjectFromDB(resultSet);
             }
 
         } catch (SQLException ex) {
@@ -55,11 +55,11 @@ public class FirstLevelSubjectsManager extends DBManager {
             close(connection);
         }
 
-        return bookmark;
+        return firstLevelSubject;
     }
 
-    public List<Bookmark> allBookmarks() {
-        ArrayList<Bookmark> bookmarks = new ArrayList<>();
+    public List<FirstLevelSubject> allFirstLevelSubjects() {
+        ArrayList<FirstLevelSubject> firstLevelSubjects = new ArrayList<>();
 
         Connection connection = null;
         PreparedStatement statement = null;
@@ -67,11 +67,11 @@ public class FirstLevelSubjectsManager extends DBManager {
 
         try {
             connection = dataSource.getConnection();
-            statement = connection.prepareStatement("SELECT * FROM bookmarks");
+            statement = connection.prepareStatement("SELECT * FROM firstLevelSubjects");
             resultSet = statement.executeQuery();
 
             while (resultSet.next()) {
-                bookmarks.add(bookmarkFromDB(resultSet));
+                firstLevelSubjects.add(firstLevelSubjectFromDB(resultSet));
             }
 
         } catch (SQLException ex) {
@@ -83,19 +83,19 @@ public class FirstLevelSubjectsManager extends DBManager {
             close(connection);
         }
 
-        return bookmarks;
+        return firstLevelSubjects;
     }
 
-    void addBookmark(Bookmark bookmark) {
+    void addFirstLevelSubject(FirstLevelSubject firstLevelSubject) {
         Connection connection = null;
         PreparedStatement statement = null;
 
         try {
             connection = dataSource.getConnection();
-            statement = connection.prepareStatement("INSERT INTO BOOKMARKS (NAME, LINK) VALUES (?, ?)");
+            statement = connection.prepareStatement("INSERT INTO firstLevelSubjects (NAME, LINK) VALUES (?, ?)");
 
-            statement.setString(1, bookmark.getName());
-            statement.setString(2, bookmark.getLink());
+            statement.setString(1, firstLevelSubject.getName());
+            statement.setString(2, firstLevelSubject.getLink());
 
             boolean ok = statement.execute();
             System.out.println("OK? " + ok);
@@ -116,7 +116,7 @@ public class FirstLevelSubjectsManager extends DBManager {
 
         try {
             connection = dataSource.getConnection();
-            statement = connection.prepareStatement("delete from bookmarks where id=?");
+            statement = connection.prepareStatement("delete from firstLevelSubjects where id=?");
             statement.setInt(1, id);
 
             boolean ok = statement.execute();
@@ -132,17 +132,17 @@ public class FirstLevelSubjectsManager extends DBManager {
         }
     }
 
-    public void updateBookmark(Bookmark bookmark) {
+    public void updateFirstLevelSubject(FirstLevelSubject firstLevelSubject) {
         Connection connection = null;
         PreparedStatement statement = null;
 
         try {
             connection = dataSource.getConnection();
             // we should rename "created_at" to "last_modified"
-            statement = connection.prepareStatement("update bookmarks set name=?, link=?, created_at = current_timestamp where id=?");
-            statement.setString(1, bookmark.getName());
-            statement.setString(2, bookmark.getLink());
-            statement.setInt(3, bookmark.getId());
+            statement = connection.prepareStatement("update firstLevelSubjects set name=?, link=?, created_at = current_timestamp where id=?");
+            statement.setString(1, firstLevelSubject.getName());
+            statement.setString(2, firstLevelSubject.getLink());
+            statement.setInt(3, firstLevelSubject.getId());
 
             boolean ok = statement.execute();
             // return this to the caller

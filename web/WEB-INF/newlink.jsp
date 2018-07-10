@@ -6,7 +6,7 @@
         <title>Add a new link!</title>
     </head>
     <body>
-        <form method="POST" action="/bookmarks/new">
+        <form method="POST" action="/StudyApplication/new">
             <input type="text" name="name" placeholder="Site name" /><br />
             <input type="test" name="link" placeholder="URL" /> <br />
             

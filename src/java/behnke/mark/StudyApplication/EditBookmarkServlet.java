@@ -71,7 +71,7 @@ public class EditBookmarkServlet extends HttpServlet {
                 bookmarkManager().updateBookmark(bookmark);
 
                 req.getSession().setAttribute("flash", "The bookmark was updated, thanks!");
-                resp.sendRedirect("/bookmarks/");
+                resp.sendRedirect("/StudyApplication/");
             } else {
                 req.setAttribute("errors", errors);
                 req.setAttribute("bookmark", bookmark);
